@@ -1,1 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savings & Goals</title>
+    <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap' rel='stylesheet'>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #B9D9EB;
+            color: black;
+            padding: 20px 0;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .container {
+            width: 80%;
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        button {
+            background-color: #B9D9EB;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="number"], input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 5px;
+        }
+        .new-goal-form {
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            background-color: #ddd;
+            border-radius: 5px;
+            height: 20px;
+            margin-top: 10px;
+        }
+        .progress {
+            background-color: #4CAF50;
+            height: 100%;
+            border-radius: 5px;
+            width: 0;
+        }
+    </style>
+    <script>
+        function updateSavings(goalId, savedInputId) {
+            var savedInput = document.getElementById(savedInputId);
+            var savedAmount = parseFloat(savedInput.value);
+            if (isNaN(savedAmount)) {
+                alert('Please enter a valid number');
+                return;
+            }
+
+            var currentSavedElement = document.getElementById(goalId);
+            var currentSaved = parseFloat(currentSavedElement.textContent.replace('$', ''));
+            var newSaved = currentSaved + savedAmount;
+
+            if (newSaved < 0) {
+                alert('Total savings cannot go below $0.');
+                newSaved = 0; // Reset to zero if it goes negative
+            }
+
+            currentSavedElement.textContent = '$' + newSaved.toFixed(2);
+            savedInput.value = ''; // Clear input after updating
+
+            // Update progress bar
+            updateProgressBar(goalId);
+
+            // Optionally update localStorage for persistent data storage across sessions
+            localStorage.setItem(goalId, newSaved.toString()); // Store each goal's savings
+        }
+
+        function addGoal() {
+            var goalName = document.getElementById("new-goal-name").value.trim();
+            var goalTarget = parseFloat(document.getElementById("new-goal-target").value);
+            if (goalName === "" || isNaN(goalTarget) || goalTarget <= 0) {
+                alert('Please enter a valid goal name and target amount');
+                return;
+            }
+
+            var container = document.querySelector(".container");
+            var newGoalHTML = `
+                <div class="goal">
+                    <h3>Goal: ${goalName}</h3>
+                    <p>Target: <span id="${goalName.toLowerCase()}-target">$${goalTarget.toFixed(2)}</span></p>
+                    <p>Saved: <span id="${goalName.toLowerCase()}-saved">$0.00</span></p>
+                    <div class="progress-bar">
+                        <div class="progress" id="${goalName.toLowerCase()}-progress"></div>
+                    </div>
+                    <input type="number" id="${goalName.toLowerCase()}-new-saved" placeholder="Enter new savings amount">
+                    <button onclick="updateSavings('${goalName.toLowerCase()}-saved', '${goalName.toLowerCase()}-new-saved')">Update Savings</button>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', newGoalHTML);
+
+            // Clear input fields after adding a new goal
+            document.getElementById("new-goal-name").value = "";
+            document.getElementById("new-goal-target").value = "";
+        }
+
+        function updateProgressBar(goalId) {
+            var savedAmount = parseFloat(document.getElementById(goalId).textContent.replace('$', ''));
+            var targetAmount = parseFloat(document.getElementById(goalId.replace('-saved', '-target')).textContent.replace('$', ''));
+            var progress = (savedAmount / targetAmount) * 100;
+            document.getElementById(goalId.replace('-saved', '-progress')).style.width = progress + '%';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Savings & Goals</h1>
+    </header>
+    <div class="container">
+        <div class="new-goal-form">
+            <input type="text" id="new-goal-name" placeholder="Enter goal name">
+            <input type="number" id="new-goal-target" placeholder="Enter target amount">
+            <button onclick="addGoal()">Add New Goal</button>
+        </div>
+        <!-- Existing goals will be listed here -->
+        <button type="button" onclick="window.location.href='index.html';">Back to Home Page</button>
+    </div>
+    <footer>
+        <p>&copy; 2024 Abira Arifin. All rights reserved.</p>
+    </footer>
+</body>
+</html>
 
