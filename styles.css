@@ -1,0 +1,82 @@
+body {
+    font-family: 'Montserrat', sans-serif; /* Set the default font for the page */
+    background-color: #f8f9fa; /* Light grey background for the body */
+    margin: 0; /* Remove default margin to enable full width elements */
+    padding: 0; /* Remove default padding */
+}
+header {
+    background-color: #B9D9EB; /* Set the background color to light blue */
+    color: black; /* Set text color in header */
+    padding: 10px 0; /* Padding on top and bottom inside the border */
+    text-align: center;
+    width: 100%; /* Ensures the header stretches from edge to edge */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; /* Ensure navigation aligns properly without default margins */
+    text-align: center;
+}
+
+header nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+header nav ul li a {
+    color: black; /* Set the navigation links to black */
+    text-decoration: none;
+}
+
+main {
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff; /* Keep the main content area white */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+}
+
+main section {
+    margin-bottom: 20px;
+    position: relative; /* Necessary for positioning the pseudo-elements */
+}
+
+main section::before {
+    content: '•'; /* Fancy bullet point */
+    color: #B9D9EB; /* Light blue color for the bullet points */
+    font-size: 24px;
+    position: absolute;
+    left: -35px;
+    top: 0;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #1F305E;
+    color: white;
+}
+
+button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #B9D9EB; /* Use the light blue color for buttons */
+    color: black; /* Black text on buttons for better visibility */
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #99c2d1; /* Slightly darker blue on hover for interaction */
+}
+
+#overview p {
+    font-size: 18px;
+}
+
+#quick-actions button {
+    margin-top: 10px;
+}
