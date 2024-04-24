@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Data Entry</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif; /* Set the font family */
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #B9D9EB; /* Light blue background */
+            color: black;
+            padding: 20px 0;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        form {
+            background-color: white;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btn {
+            background-color: #B9D9EB;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .btn-back {
+            background-color: #ccc; /* Gray color for the back button */
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>New Transaction Entry</h1>
+    </header>
+    <form onsubmit="return addTransaction();">
+        <div class="form-group">
+            <label for="transaction-type">Transaction Type:</label>
+            <select id="transaction-type">
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" placeholder="Enter amount" required>
+        </div>
+        <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" id="date" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <input type="text" id="description" placeholder="Description of the transaction">
+        </div>
+        <button type="submit" class="btn">Submit</button>
+        <button type="button" class="btn btn-back" onclick="window.location.href='index.html';">Back to Home Page</button>
+    </form>
+    <script>
+        function addTransaction() {
+            const type = document.getElementById('transaction-type').value;
+            const amount = parseFloat(document.getElementById('amount').value);
+            const description = document.getElementById('description').value;
+            const date = document.getElementById('date').value;
+
+            if (!amount || !date) {
+                alert("Please fill in all required fields.");
+                return false; // Prevent form submission
+            }
+
+            console.log('Transaction:', type, amount, description, date);
+            // Here you would normally handle the storage of transaction data
+            alert('Transaction added successfully!');
+
+            return false; // Prevent actual form submission for demonstration
+        }
+    </script>
+    <footer>
+        <p>&copy; 2024 Abira Arifin. All rights reserved.</p>
+    </footer>
+</body>
+</html>
