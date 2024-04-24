@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget and Purchase Plans</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .spacing {
+            margin-top: 40px; /* Increased spacing */
+            margin-bottom: 40px; /* Increased spacing */
+        }
+        label, input, button {
+            display: block; /* Makes each element take a full row */
+            margin-top: 15px; /* Adds top margin to each element */
+            margin-bottom: 15px; /* Adds bottom margin to each element */
+        }
+        #budget-form, #purchase-form {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        section {
+            margin-bottom: 50px; /* Adds more space between sections */
+        }
+    </style>
+    <script>
+        function updateBudget() {
+            const income = parseFloat(document.getElementById('monthly-income').value);
+            const expenses = parseFloat(document.getElementById('monthly-expenses').value);
+            const housing = parseFloat(document.getElementById('housing').value);
+            const food = parseFloat(document.getElementById('food').value);
+            const transportation = parseFloat(document.getElementById('transportation').value);
+            const entertainment = parseFloat(document.getElementById('entertainment').value);
+            const totalExpenses = expenses + housing + food + transportation + entertainment;
+
+            document.getElementById('total-expenses').textContent = `Total Expenses: $${totalExpenses.toFixed(2)}`;
+            const surplus = income - totalExpenses;
+            document.getElementById('surplus').textContent = `Monthly Surplus/Deficit: $${surplus.toFixed(2)}`;
+        }
+
+        function calculateOptions() {
+            var purchaseAmount = parseFloat(document.getElementById('purchase-amount').value);
+            var emiMonths = parseInt(document.getElementById('emi-months').value);
+            var monthlyPayment = purchaseAmount / emiMonths;
+            document.getElementById('full-payment').textContent = `$${purchaseAmount.toFixed(2)}`;
+            document.getElementById('monthly-payment').textContent = `$${monthlyPayment.toFixed(2)} per month for ${emiMonths} months`;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Budget and Purchase Plans</h1>
+    </header>
+    <main>
+        <section id="budget-section">
+            <h2>Create or Adjust Your Budget</h2>
+            <form id="budget-form">
+                <label for="monthly-income">Monthly Income:</label>
+                <input type="number" id="monthly-income" placeholder="Enter your monthly income">
+                <div class="spacing"></div>
+                <label for="monthly-expenses">Basic Monthly Expenses:</label>
+                <input type="number" id="monthly-expenses" placeholder="Enter basic monthly expenses">
+                <label for="housing">Housing:</label>
+                <input type="number" id="housing" placeholder="Enter housing expenses">
+                <label for="food">Food:</label>
+                <input type="number" id="food" placeholder="Enter food expenses">
+                <label for="transportation">Transportation:</label>
+                <input type="number" id="transportation" placeholder="Enter transportation expenses">
+                <label for="entertainment">Entertainment:</label>
+                <input type="number" id="entertainment" placeholder="Enter entertainment expenses">
+                <button type="button" onclick="updateBudget()">Calculate Total and Surplus</button>
+            </form>
+            <p id="total-expenses">Total Expenses: -$</p>
+            <p id="surplus">Monthly Surplus/Deficit: -$</p>
+        </section>
+        <div class="spacing"></div>
+        <section id="purchase-plans">
+            <h2>Input Purchase Plans</h2>
+            <form id="purchase-form">
+                <label for="purchase-amount">Purchase Amount:</label>
+                <input type="number" id="purchase-amount" placeholder="Enter purchase amount">
+                <div class="spacing"></div>
+                <label for="emi-months">EMI Months:</label>
+                <input type="number" id="emi-months" placeholder="Number of months for EMI">
+                <button type="button" onclick="calculateOptions()">Calculate Payment Options</button>
+            </form>
+            <div id="payment-options">
+                <h3>Payment Options:</h3>
+                <p>Pay in Full: <span id="full-payment">-</span></p>
+                <p>EMI: <span id="monthly-payment">-</span></p>
+            </div>
+        </section>
+        <div>
+          <button type="button" onclick="window.location.href='index.html';">Back to Home Page</button>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Abira Arifin. All rights reserved.</p>
+    </footer>
+</body>
+</html>
