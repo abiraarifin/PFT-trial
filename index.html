@@ -2,35 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta viewport="width=device-width, initial-scale=1.0">
     <title>Personal Finance Tracker - Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .navigation {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #4CAF50; /* Nice green color */
+            color: white;
+            padding: 25px 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049; /* Slightly darker green on hover */
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>Personal Finance Dashboard</h1>
-        <div class="navigation">
-            <button onclick="location.href='transactions.html'">
-                <img src="add_transaction.png" alt="Add Transaction" style="height: 20px; vertical-align: middle;">
-                New Entry
-            </button>
-            <button onclick="location.href='savings.html'">
-                <img src="savings_logo.png" alt="Savings and Goals" style="height: 20px; vertical-align: middle;">
-                Savings and Goals
-            </button>
-            <button onclick="location.href='purchase.html'">
-                <img src="budgets_logo.png" alt="Budget Planning" style="height: 20px; vertical-align: middle;">
-                Budget Planning
-            </button>
-            <button onclick="location.href='record.html'">
-                <img src="report_logo.png" alt="Transaction Record" style="height: 20px; vertical-align: middle;">
-                Transaction Record
-            </button>
-            <button onclick="location.href='settings.html'">
-                <img src="settings_logo.png" alt="Settings" style="height: 20px; vertical-align: middle;">
-                Settings
-            </button>
-        </div>
+        
     </header>
     <main>
         <section id="overview">
@@ -38,18 +39,17 @@
             <p>Balance: <strong>$0</strong></p>
             <p>Monthly Income: <strong>$0</strong></p>
             <p>Monthly Expenses: <strong>$0</strong></p>
+            <h3>Actions</h3>
+            <!-- Button section added below the financial overview -->
+            <div class="navigation">
+                <button onclick="location.href='transactions.html'">New Transaction</button>
+                <button onclick="location.href='savings.html'">Savings and Goals</button>
+                <button onclick="location.href='purchase.html'">Budget Planning</button>
+                <button onclick="location.href='record.html'">Transaction Record</button>
+                <button onclick="location.href='settings.html'">Settings</button>
+            </div>
         </section>
-        <section id="quick-actions">
-            <h2>Quick Actions</h2>
-            <button onclick="location.href='transactions.html'" class="btn">
-                <img src="add_transaction.png" alt="Add New Transaction" style="height: 20px; vertical-align: middle;">
-                Add New Transaction
-            </button>
-            <button onclick="location.href='purchase.html'">
-                <img src="budgets_logo.png" alt="Evaluate Purchase Plans" style="height: 20px; vertical-align: middle;">
-                Evaluate Purchase Plans
-            </button>
-        </section>
+     
     </main>
     <footer>
         <p>&copy; 2024 Abira Arifin. All rights reserved.</p>
