@@ -2,36 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta viewport="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Finance Tracker - Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .navigation {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        button {
-            background-color: #4CAF50; /* Nice green color */
-            color: white;
-            padding: 25px 10px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049; /* Slightly darker green on hover */
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <h1>Personal Finance Dashboard</h1>
-        
+        <!-- Button section below the header -->
+        <div class="navigation">
+            <button onclick="location.href='transactions.html'">New Transaction</button>
+            <button onclick="location.href='savings.html'">Savings and Goals</button>
+            <button onclick="location.href='purchase.html'">Budget Planning</button>
+            <button onclick="location.href='record.html'">Transaction Record</button>
+            <button onclick="location.href='settings.html'">Settings</button>
+        </div>
     </header>
     <main>
         <section id="overview">
@@ -39,20 +24,16 @@
             <p>Balance: <strong>$0</strong></p>
             <p>Monthly Income: <strong>$0</strong></p>
             <p>Monthly Expenses: <strong>$0</strong></p>
-            <h3>Actions</h3>
-            <!-- Button section added below the financial overview -->
-            <div class="navigation">
-                <button onclick="location.href='transactions.html'">New Transaction</button>
-                <button onclick="location.href='savings.html'">Savings and Goals</button>
-                <button onclick="location.href='purchase.html'">Budget Planning</button>
-                <button onclick="location.href='record.html'">Transaction Record</button>
-                <button onclick="location.href='settings.html'">Settings</button>
-            </div>
+            
         </section>
-     
+        <section id="quick-actions">
+            <h2>Quick Actions</h2>
+            <button onclick="location.href='transactions.html'" class="btn">Add New Transaction</button>
+            <button onclick="location.href='purchase.html'">Evaluate Purchase Plans</button>
+        </section>
     </main>
     <footer>
         <p>&copy; 2024 Abira Arifin. All rights reserved.</p>
     </footer>
 </body>
-</html>
+</html>  
